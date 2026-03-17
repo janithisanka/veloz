@@ -11,9 +11,9 @@ while ($row = $settingsResult->fetch_assoc()) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo isset($pageTitle) ? htmlspecialchars($pageTitle) . ' | ' : ''; ?>Veloz AutoHaus Colombo - Japanese Vehicle Imports Sri Lanka</title>
-    <meta name="description" content="Veloz AutoHaus Colombo - Sri Lanka's trusted Japanese vehicle importer. Brand new and reconditioned Toyota, Honda, Nissan, Suzuki, and more at competitive prices. Part of the Veloz AutoHaus family.">
-    <meta name="keywords" content="Japanese vehicles Sri Lanka, car imports Colombo, brand new cars Sri Lanka, reconditioned vehicles, Toyota Sri Lanka, Honda Sri Lanka, Veloz AutoHaus">
+    <title><?php echo isset($pageTitle) ? htmlspecialchars($pageTitle) . ' | ' : ''; ?>Veloz Autohaus Colombo - Japanese Vehicle Imports Sri Lanka</title>
+    <meta name="description" content="Veloz Autohaus Colombo - Sri Lanka's trusted Japanese vehicle importer. Brand new and reconditioned Toyota, Honda, Nissan, Suzuki, and more at competitive prices. Part of the Veloz Autohaus family.">
+    <meta name="keywords" content="Japanese vehicles Sri Lanka, car imports Colombo, brand new cars Sri Lanka, reconditioned vehicles, Toyota Sri Lanka, Honda Sri Lanka, Veloz Autohaus">
     <meta name="theme-color" content="#121217">
     <link rel="stylesheet" href="<?php echo SITE_URL; ?>/assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -297,6 +297,10 @@ while ($row = $settingsResult->fetch_assoc()) {
                     </a>
                 </div>
                 <div class="top-bar-right">
+                    <a href="https://velozautohaus.com.au/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:5px;color:#d4af37;font-size:12px;font-weight:600;text-decoration:none;border:1px solid rgba(212,175,55,0.3);padding:3px 10px;border-radius:4px;" title="Visit our Australia website">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                        🇦🇺 Australia
+                    </a>
                     <?php if (!empty($siteSettings['facebook'])): ?>
                         <a href="<?php echo htmlspecialchars($siteSettings['facebook']); ?>" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                             <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
@@ -343,7 +347,7 @@ while ($row = $settingsResult->fetch_assoc()) {
             <div class="header-content">
                 <!-- Logo -->
                 <a href="<?php echo SITE_URL; ?>" class="logo">
-                    <span class="logo-text">Veloz<span class="logo-blue">AutoHaus</span></span>
+                    <span class="logo-text">Veloz<span class="logo-blue">Autohaus</span></span>
                     <span class="logo-sub">Colombo</span>
                 </a>
 

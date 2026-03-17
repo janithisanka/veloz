@@ -1,7 +1,7 @@
 <?php
-// Show errors (remove in production)
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// Error reporting (disabled in production)
+error_reporting(0);
+ini_set('display_errors', 0);
 
 // Database Configuration
 define('DB_HOST', 'localhost');
@@ -10,8 +10,8 @@ define('DB_PASS', '');
 define('DB_NAME', 'veloz_autohaus');
 
 // Site Configuration
-define('SITE_NAME', 'Veloz AutoHaus Colombo');
-define('SITE_URL', 'http://localhost/VelozAutoHaus');
+define('SITE_NAME', 'Veloz Autohaus Colombo');
+define('SITE_URL', 'http://localhost/VelozAutohaus');
 define('UPLOAD_PATH', __DIR__ . '/../uploads/cars/');
 define('GALLERY_PATH', __DIR__ . '/../uploads/gallery/');
 define('POSTS_PATH', __DIR__ . '/../uploads/posts/');
@@ -55,11 +55,7 @@ function getDBConnection() {
             die("<!DOCTYPE html><html><head><title>Database Error</title></head><body>
             <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 30px; background: #fff; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);'>
                 <h2 style='color: #e63946;'>Database Connection Error</h2>
-                <p>Could not connect to MySQL server. Please ensure:</p>
-                <ul>
-                    <li>XAMPP is running</li>
-                    <li>MySQL service is started</li>
-                </ul>
+                <p>Could not connect to the database server. Please contact the site administrator.</p>
                 <p><strong>Error:</strong> " . htmlspecialchars($e2->getMessage()) . "</p>
             </div></body></html>");
         }

@@ -1,4 +1,4 @@
-// Veloz AutoHaus - Admin JavaScript
+// Veloz Autohaus - Admin JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
     // Sidebar Toggle

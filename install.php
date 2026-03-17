@@ -1,6 +1,6 @@
 <?php
 /**
- * Veloz AutoHaus - Installation Script
+ * Veloz Autohaus - Installation Script
  * Run this once to create the database and tables
  */
 
@@ -90,7 +90,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Install - Veloz AutoHaus</title>
+    <title>Install - Veloz Autohaus</title>
     <style>
         * {
             box-sizing: border-box;
@@ -255,7 +255,7 @@ try {
 <body>
     <div class="install-container">
         <div class="install-header">
-            <h1>Veloz<span>AutoHaus</span></h1>
+            <h1>Veloz<span>Autohaus</span></h1>
             <p>Installation Wizard</p>
         </div>
         <div class="install-body">
@@ -265,7 +265,7 @@ try {
                         <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                     <h2>Already Installed</h2>
-                    <p>Veloz AutoHaus is already set up and ready to use.</p>
+                    <p>Veloz Autohaus is already set up and ready to use.</p>
                     <div class="links">
                         <a href="./" class="link-primary">Visit Website</a>
                         <a href="./admin/" class="link-secondary">Admin Panel</a>
@@ -312,7 +312,7 @@ try {
 
                 <form method="POST">
                     <button type="submit" name="install" class="btn">
-                        Install Veloz AutoHaus
+                        Install Veloz Autohaus
                     </button>
                 </form>
             <?php endif; ?>

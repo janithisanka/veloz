@@ -85,7 +85,27 @@ try {
 }
 
 // -------------------------------------------------------------------
-// 7. Hybrid count for category card
+// 7. Hero slideshow images (gallery images used as hero backgrounds)
+// -------------------------------------------------------------------
+$heroSlides = [];
+try {
+    $heroResult = $conn->query("
+        SELECT image_path FROM gallery
+        WHERE is_active = 1
+        ORDER BY sort_order ASC, id DESC
+        LIMIT 6
+    ");
+    if ($heroResult && $heroResult->num_rows > 0) {
+        while ($row = $heroResult->fetch_assoc()) {
+            $heroSlides[] = $row['image_path'];
+        }
+    }
+} catch (Exception $e) {
+    // gallery table does not exist yet
+}
+
+// -------------------------------------------------------------------
+// 8. Hybrid count for category card
 // -------------------------------------------------------------------
 $hybridCountResult = $conn->query("SELECT COUNT(*) AS count FROM cars WHERE is_available = 1 AND fuel_type = 'hybrid'");
 $hybridCount = ($hybridCountResult) ? $hybridCountResult->fetch_assoc()['count'] : 0;
@@ -106,23 +126,88 @@ include 'includes/header.php';
     min-height: 600px;
     display: flex;
     align-items: center;
-    background: linear-gradient(135deg, #0a0e17 0%, #0d1b2a 40%, #1a1a2e 100%);
+    background: #0a0e17;
     overflow: hidden;
     padding: 80px 0;
 }
-.hp-hero::before {
-    content: '';
+
+/* Slideshow layers */
+.hp-hero-slides {
     position: absolute;
     inset: 0;
+    z-index: 0;
+}
+.hp-hero-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    animation: heroFade var(--hero-total-duration, 24s) linear infinite;
+    animation-delay: var(--hero-delay, 0s);
+}
+@keyframes heroFade {
+    0%        { opacity: 0;   transform: scale(1); }
+    5%        { opacity: 1; }
+    30%       { opacity: 1;   transform: scale(1.06); }
+    35%       { opacity: 0; }
+    100%      { opacity: 0;   transform: scale(1.06); }
+}
+
+/* Dark gradient overlay over slideshow */
+.hp-hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
     background:
-        radial-gradient(circle at 20% 50%, rgba(212,175,55,0.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(212,175,55,0.06) 0%, transparent 40%);
+        linear-gradient(135deg, rgba(10,14,23,0.82) 0%, rgba(13,27,42,0.70) 40%, rgba(26,26,46,0.65) 100%),
+        radial-gradient(circle at 20% 50%, rgba(212,175,55,0.07) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(212,175,55,0.05) 0%, transparent 40%);
     pointer-events: none;
+}
+
+/* Dots navigation */
+.hp-hero-dots {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    gap: 8px;
+}
+.hp-hero-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.3s, transform 0.3s;
+    animation: dotActive var(--hero-total-duration, 24s) linear infinite;
+    animation-delay: var(--hero-delay, 0s);
+}
+@keyframes dotActive {
+    0%   { background: rgba(255,255,255,0.3); transform: scale(1); }
+    5%   { background: #d4af37; transform: scale(1.3); }
+    30%  { background: #d4af37; transform: scale(1.3); }
+    35%  { background: rgba(255,255,255,0.3); transform: scale(1); }
+    100% { background: rgba(255,255,255,0.3); transform: scale(1); }
+}
+
+.hp-hero::before {
+    display: none; /* replaced by .hp-hero-overlay */
 }
 .hp-hero-inner {
     position: relative;
     z-index: 2;
     max-width: 720px;
+}
+.hp-hero .container {
+    position: relative;
+    z-index: 2;
 }
 .hp-hero-badge {
     display: inline-block;
@@ -735,7 +820,29 @@ include 'includes/header.php';
      SECTION 1 : HERO
      ============================================================ -->
 <section class="hp-hero">
-    <div class="container">
+
+    <?php if (!empty($heroSlides)): ?>
+    <?php
+        $slideCount = count($heroSlides);
+        $slideDuration = 6; // seconds each slide is visible
+        $totalDuration = $slideCount * $slideDuration;
+    ?>
+    <!-- Background Slideshow -->
+    <div class="hp-hero-slides">
+        <?php foreach ($heroSlides as $i => $slide): ?>
+        <div class="hp-hero-slide" style="
+            background-image: url('uploads/gallery/<?php echo htmlspecialchars($slide); ?>');
+            --hero-delay: <?php echo $i * $slideDuration; ?>s;
+            --hero-total-duration: <?php echo $totalDuration; ?>s;
+        "></div>
+        <?php endforeach; ?>
+    </div>
+    <?php endif; ?>
+
+    <!-- Overlay -->
+    <div class="hp-hero-overlay"></div>
+
+    <div class="container" style="position:relative;z-index:2;">
         <div class="hp-hero-inner">
             <span class="hp-hero-badge">Sri Lanka's #1 Japanese Vehicle Importer</span>
             <h1>Import Your Dream Car <span>from Japan</span></h1>
@@ -766,6 +873,19 @@ include 'includes/header.php';
             </div>
         </div>
     </div>
+
+    <?php if (!empty($heroSlides) && count($heroSlides) > 1): ?>
+    <!-- Dots -->
+    <div class="hp-hero-dots">
+        <?php foreach ($heroSlides as $i => $slide): ?>
+        <button class="hp-hero-dot" style="
+            --hero-delay: <?php echo $i * $slideDuration; ?>s;
+            --hero-total-duration: <?php echo $totalDuration; ?>s;
+        " aria-label="Slide <?php echo $i + 1; ?>"></button>
+        <?php endforeach; ?>
+    </div>
+    <?php endif; ?>
+
 </section>
 
 
@@ -776,7 +896,7 @@ include 'includes/header.php';
     <div class="container">
         <div class="hp-section-header">
             <span class="hp-section-badge">Why Choose Us</span>
-            <h2>The Veloz AutoHaus Advantage</h2>
+            <h2>The Veloz Autohaus Advantage</h2>
             <p>Four reasons thousands of Sri Lankans trust us with their next vehicle</p>
         </div>
         <div class="hp-features-grid">

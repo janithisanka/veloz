@@ -1,4 +1,4 @@
--- Veloz AutoHaus Colombo - Database Schema
+-- Veloz Autohaus Colombo - Database Schema
 
 CREATE DATABASE IF NOT EXISTS veloz_autohaus;
 USE veloz_autohaus;
@@ -178,9 +178,9 @@ INSERT INTO site_settings (setting_key, setting_value) VALUES
 ('instagram', 'https://instagram.com/velozautohaus'),
 ('youtube', ''),
 ('tiktok', ''),
-('company_name', 'Veloz AutoHaus Colombo'),
+('company_name', 'Veloz Autohaus Colombo'),
 ('tagline', 'Premium Japanese Vehicle Imports'),
-('about_text', 'Veloz AutoHaus Colombo is Sri Lanka''s premier Japanese vehicle importer. Part of the Veloz AutoHaus family, we offer the lowest prices on brand new and reconditioned vehicles direct from Japan. Quality assured, transparent pricing, and complete after-sales support.');
+('about_text', 'Veloz Autohaus Colombo is Sri Lanka''s premier Japanese vehicle importer. Part of the Veloz Autohaus family, we offer the lowest prices on brand new and reconditioned vehicles direct from Japan. Quality assured, transparent pricing, and complete after-sales support.');
 
 -- Insert sample cars
 INSERT INTO cars (brand_id, category_id, model, year, condition_type, price, mileage, engine_capacity, fuel_type, transmission, color, body_type, seats, features, description, is_featured, is_available) VALUES

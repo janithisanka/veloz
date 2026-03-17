@@ -1,6 +1,6 @@
 <aside class="admin-sidebar">
     <div class="sidebar-logo">
-        <h2>Veloz<span>AutoHaus</span></h2>
+        <h2>Veloz<span>Autohaus</span></h2>
     </div>
 
     <nav class="sidebar-nav">

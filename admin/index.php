@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="login-container">
         <div class="login-box">
             <div class="login-logo">
-                <h1>Veloz<span>AutoHaus</span></h1>
+                <h1>Veloz<span>Autohaus</span></h1>
                 <p>Admin Panel</p>
             </div>
 

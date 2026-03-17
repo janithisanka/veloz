@@ -1,4 +1,4 @@
-// Veloz AutoHaus - Main JavaScript
+// Veloz Autohaus - Main JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
     // Mobile Menu Toggle
